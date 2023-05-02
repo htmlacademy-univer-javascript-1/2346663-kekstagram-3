@@ -1,2 +1,3 @@
 import './pictures.js';
-//Задание 7 часть 2
+import './form.js';
+import './validate.js';
