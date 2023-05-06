@@ -1,4 +1,6 @@
-import './pictures.js';
-import './form.js';
+import { getData } from './load.js';
+import {renderPhotos} from './pictures.js';
+import { showAlert } from './util.js';
 import './validate.js';
-import './effect.js';
+
+getData(renderPhotos, showAlert);
