@@ -2,24 +2,34 @@ const buttonSmaller = document.querySelector('.scale__control--smaller');
 const buttonBigger = document.querySelector('.scale__control--bigger');
 const scaleInput = document.querySelector('.scale__control--value');
 const scaleValue = scaleInput.value;
-let scaleValueWithoutPercent = scaleValue.substring(0, scaleValue.length - 1);
+let scale = scaleValue.substring(0, scaleValue.length - 1);
 
 const img = document.querySelector('.img-upload__preview').querySelector('img');
 
+const scaleDefault = 100;
+
+function resetScale() {
+  scaleInput.value = `${scaleDefault  }%`;
+  img.style.transform = `scale(${scaleDefault / 100})`;
+  scale = scaleDefault;
+}
+
+
 buttonSmaller.addEventListener('click', () => {
-  if (scaleValueWithoutPercent > 25) {
-    scaleValueWithoutPercent -= 25;
-    scaleInput.value = `${scaleValueWithoutPercent  }%`;
-    img.style.transform = `scale(${scaleValueWithoutPercent / 100})`;
+  if (scale > 25) {
+    scale -= 25;
+    scaleInput.value = `${scale  }%`;
+    img.style.transform = `scale(${scale / 100})`;
   }
 });
 
 buttonBigger.addEventListener('click', () => {
-  if (scaleValueWithoutPercent < 100) {
-    scaleValueWithoutPercent += 25;
-    scaleInput.value = `${scaleValueWithoutPercent  }%`;
-    img.style.transform = `scale(${scaleValueWithoutPercent / 100})`;
+  if (scale < 100) {
+    scale += 25;
+    scaleInput.value = `${scale  }%`;
+    img.style.transform = `scale(${scale / 100})`;
   }
 });
 
 export {img};
+export {resetScale};

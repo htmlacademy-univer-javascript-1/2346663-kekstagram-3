@@ -1,18 +1,18 @@
-import {createArrayOfUsers} from './data.js';
+function renderPhotos (photos) {
+  const fragment = document.createDocumentFragment();
 
-const photos = createArrayOfUsers(25);
+  const listElement = document.querySelector('.pictures');
+  const pictureTemplate = document.querySelector('#picture').content.querySelector('a');
 
-const fragment = document.createDocumentFragment();
+  photos.forEach((photo) => {
+    const pictureElement = pictureTemplate.cloneNode(true);
+    pictureElement.querySelector('img').src = photo.url;
+    pictureElement.querySelector('.picture__comments').textContent = photo.comments;
+    pictureElement.querySelector('.picture__likes').textContent = photo.likes;
+    fragment.appendChild(pictureElement);
+  });
 
-const listElement = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.querySelector('a');
+  listElement.appendChild(fragment);
+}
 
-photos.forEach((photo) => {
-  const pictureElement = pictureTemplate.cloneNode(true);
-  pictureElement.querySelector('img').src = photo.url;
-  pictureElement.querySelector('.picture__comments').textContent = photo.comments;
-  pictureElement.querySelector('.picture__likes').textContent = photo.likes;
-  fragment.appendChild(pictureElement);
-});
-
-listElement.appendChild(fragment);
+export {renderPhotos};
